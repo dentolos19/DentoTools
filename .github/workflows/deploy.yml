@@ -24,8 +24,10 @@ jobs:
       name: Publish Website
       run: dotnet publish ./DentoTools/DentoTools.csproj --configuration Release --output ./output
     - 
-      name: Fix BaseURL
-      run: sed --in-place 's/<base href="\/"\/>/<base href="\/DentoTools\/"\/>/g' ./output/wwwroot/index.html
+      name: Fix Base URL
+      run: |
+        sed --in-place 's/<base href="\/"\/>/<base href="\/DentoTools\/"\/>/g' ./output/wwwroot/index.html
+        sed --in-place 's/<base href="\/" \/>/<base href="\/DentoTools\/" \/>/g' ./output/wwwroot/index.html
     - 
       name: Disable Jekyll
       run: touch ./output/wwwroot/.nojekyll
