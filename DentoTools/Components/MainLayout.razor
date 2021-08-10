@@ -1,16 +1,73 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu/>
-    </div>
-    <div class="main">
-        <div class="top-row px-4">
-            <a href="https://dentolos19.github.io">Home</a>
-            <a href="https://github.com/dentolos19/DentoTools" target="_blank">GitHub</a>
-        </div>
-        <div class="content px-4">
-            @Body
-        </div>
-    </div>
-</div>
+<Layout Sider="true">
+    <LayoutSider>
+        <LayoutSiderContent>
+            <Bar Mode="BarMode.VerticalInline" CollapseMode="BarCollapseMode.Small" Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" ThemeContrast="ThemeContrast.Dark">
+                <BarToggler/>
+                <BarBrand>
+                    <BarItem>
+                        <BarLink>
+                            <BarIcon IconName="@Logo"/>
+                            DentoTools
+                        </BarLink>
+                    </BarItem>
+                </BarBrand>
+                <BarMenu>
+                    <BarStart>
+                        <BarItem>
+                            <BarDropdown>
+                                <BarDropdownToggle>
+                                    <BarIcon IconName="IconName.Memory"/>
+                                    Generators
+                                </BarDropdownToggle>
+                                <BarDropdownMenu>
+                                    <BarDropdownItem>
+                                        <BarLink To="gen/pass">
+                                            <BarIcon IconName="IconName.CreditCard"/>
+                                            Password Generator
+                                        </BarLink>
+                                    </BarDropdownItem>
+                                    <BarDropdownItem>
+                                        <BarLink To="gen/guid">
+                                            <BarIcon IconName="IconName.IdCard"/>
+                                            GUID Generator
+                                        </BarLink>
+                                    </BarDropdownItem>
+                                </BarDropdownMenu>
+                            </BarDropdown>
+                        </BarItem>
+                        <BarItem>
+                            <BarDropdown>
+                                <BarDropdownToggle>
+                                    <BarIcon IconName="IconName.Spa"/>
+                                    Converters
+                                </BarDropdownToggle>
+                                <BarDropdownMenu>
+                                    <BarDropdownItem>
+                                        <BarLink To="cvt/roman">
+                                            <BarIcon IconName="IconName.Code"/>
+                                            Roman Numerals
+                                        </BarLink>
+                                    </BarDropdownItem>
+                                </BarDropdownMenu>
+                            </BarDropdown>
+                        </BarItem>
+                    </BarStart>
+                </BarMenu>
+            </Bar>
+        </LayoutSiderContent>
+    </LayoutSider>
+    <Container Padding="Padding.Is4">
+        @Body
+    </Container>
+</Layout>
+
+@code
+{
+
+    private RenderFragment Logo => @<Figure Size="FigureSize.Is32x32">
+                                       <FigureImage Source="assets/images/icon.png"/>
+                                   </Figure>;
+
+}

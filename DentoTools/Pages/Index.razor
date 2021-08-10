@@ -1,13 +1,13 @@
 ﻿@page "/"
 
-@inject NavigationManager _navigationManager
-
 @code
 {
 
+    [Inject] private NavigationManager NavigationManager { get; set; }
+
     protected override void OnInitialized()
     {
-        _navigationManager.NavigateTo("password-generator");
+        NavigationManager.NavigateTo("gen/guid");
     }
 
 }
