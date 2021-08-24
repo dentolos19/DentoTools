@@ -1,8 +1,5 @@
 name: Automatic Web Deploy
-on:
-  push:
-    branches:
-    - main
+on: push
 jobs:
   task:
     runs-on: ubuntu-latest
@@ -19,13 +16,12 @@ jobs:
       name: Publish Website
       run: dotnet publish ./DentoTools/DentoTools.csproj --configuration Release --output ./output
     - 
-      name: Fix Base URL
+      name: Add Website Patches
       run: |
         sed --in-place 's/<base href="\/"\/>/<base href="\/DentoTools\/"\/>/g' ./output/wwwroot/index.html
         sed --in-place 's/<base href="\/" \/>/<base href="\/DentoTools\/" \/>/g' ./output/wwwroot/index.html
-    - 
-      name: Disable Jekyll
-      run: touch ./output/wwwroot/.nojekyll
+        cp ./output/wwwroot/index.html ./output/wwwroot/404.html
+        touch ./output/wwwroot/.nojekyll
     -
       name: Deploy Website
       uses: JamesIves/github-pages-deploy-action@4.1.4
