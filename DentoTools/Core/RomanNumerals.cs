@@ -39,11 +39,13 @@ namespace DentoTools.Core
         {
             var roman = new StringBuilder();
             foreach (var item in NumberRomanDictionary)
+            {
                 while (number >= item.Key)
                 {
                     roman.Append(item.Value);
                     number -= item.Key;
                 }
+            }
             return roman.ToString();
         }
 
