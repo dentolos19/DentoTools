@@ -1,5 +1,10 @@
 name: Automatic Web Deploy
-on: push
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - DentoTools/**
 jobs:
   task:
     runs-on: ubuntu-latest
